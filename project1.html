@@ -1,31 +1,60 @@
-<!DOCTYPE html>
+<!--
+	Name:	James Tremper
+	Date:	2015-05-06
+	Desc:	Project 1 .html file
+
+	References:
+
+  -->
+
 <html>
 <head>
-<script id="vertex-shader" type="x-shader/x-vertex">
-attribute vec4 vPosition;
+	<title>Computer Graphics - Project 1</title>
+	<script type="text/javascript" src="../common/webgl-utils.js"></script>
+	<script type="text/javascript" src="../common/MV.js"></script>
+	<script type="text/javascript" src="project1.js"></script>
 
-void main()
-{
-  gl_Position = vPosition;
-}
-</script>
+	<script id="shader-vs" type="x-shader/x-vertex">
+		attribute vec3 aVertexPosition;
+		attribute vec4 aVertexColor;
 
-<script id="fragment-shader" type="x-shader/x-fragment">
-precision mediump float;
+		uniform mat4 uMVMatrix;
+		uniform mat4 uPMatrix;
 
-void main()
-{
-gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );
-}
-</script>
-<script type="text/javascript" src="../Common/webgl-utils.js"></script>
-<script type="text/javascript" src="../Common/initShaders.js"></script>
-<script type="text/javascript" src="../Common/MV.js"></script>
-<script type="text/javascript" src="project1.js"></script>
+		varying vec4 vColor;
+
+		void main()
+		{
+			gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+			vColor = aVertexColor;
+		}
+	</script>
+
+	<script id="shader-fs" type="x-shader/x-fragment">
+		precision mediump float;
+
+		varying vec4 vColor;
+
+		void main()
+		{
+			gl_FragColor = vColor;
+		}
+	</script>
 </head>
+
 <body>
-<canvas id="gl-canvas" width="512" height="512">
-Oops ... your browser doesn't support the HTML5 canvas element
-</canvas>
+<center>
+	<h2>Project 1</h2>
+	<canvas id="gl-canvas" width="512" height="512">Your browser doesn't appear to support the &ltcanvas&gt tag.</canvas>
+	<table>
+		<tr>
+			<td>Time:</td>
+			<td id="time"></td>
+		<tr>
+			<td>Score:</td>
+			<td id="score"></td>
+	</table>
+	<h4>Avoid the falling objects. Collect 10 green objects to win.</h4>
+</center>
 </body>
 </html>

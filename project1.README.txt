@@ -1,3 +1,7 @@
-name, date, description
+Name:	James Tremper
+Date:	2015-05-06
+Desc:	Project 1 Submission
 
-be sure to include complete details of how to interact with your game, the scoring system, and how to win
+The goal of the game is to avoid the orange objects, and collect the green ones.
+Input:	Left and right arrow keys move the player (the blue square)
+Win:	You win by collecting 10 of the green objects.
